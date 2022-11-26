@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        #map {
+            width: 1134px;
+            height: 540px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/TehilSahiwal_1.js"></script>
+        <script src="data/TehsilSheikhupura_2.js"></script>
+        <script src="data/TehsilNankanasahbMandiFaizabad_3.js"></script>
+        <script src="data/tehsilmuridkeqmd_4.js"></script>
+        <script src="data/Tehsildepalpur_5.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[30.06088891090111,70.46385335584976],[32.72497239043952,77.03162702518672]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GoogleMaps_0');
+        map.getPane('pane_GoogleMaps_0').style.zIndex = 400;
+        var layer_GoogleMaps_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleMaps_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+        });
+        layer_GoogleMaps_0;
+        map.addLayer(layer_GoogleMaps_0);
+        function pop_TehilSahiwal_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE'] !== null ? autolinker.link(feature.properties['PROVINCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE_C'] !== null ? autolinker.link(feature.properties['PROVINCE_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT'] !== null ? autolinker.link(feature.properties['DISTRICT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT_C'] !== null ? autolinker.link(feature.properties['DISTRICT_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL'] !== null ? autolinker.link(feature.properties['TEHSIL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL_C'] !== null ? autolinker.link(feature.properties['TEHSIL_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Remarks'] !== null ? autolinker.link(feature.properties['Remarks'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['T_NAME'] !== null ? autolinker.link(feature.properties['T_NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['No'] !== null ? autolinker.link(feature.properties['No'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Colour'] !== null ? autolinker.link(feature.properties['Colour'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Density'] !== null ? autolinker.link(feature.properties['Density'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TehilSahiwal_1_0() {
+            return {
+                pane: 'pane_TehilSahiwal_1',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,209,128,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_TehilSahiwal_1');
+        map.getPane('pane_TehilSahiwal_1').style.zIndex = 401;
+        map.getPane('pane_TehilSahiwal_1').style['mix-blend-mode'] = 'normal';
+        var layer_TehilSahiwal_1 = new L.geoJson(json_TehilSahiwal_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_TehilSahiwal_1',
+            layerName: 'layer_TehilSahiwal_1',
+            pane: 'pane_TehilSahiwal_1',
+            onEachFeature: pop_TehilSahiwal_1,
+            style: style_TehilSahiwal_1_0,
+        });
+        bounds_group.addLayer(layer_TehilSahiwal_1);
+        map.addLayer(layer_TehilSahiwal_1);
+        function pop_TehsilSheikhupura_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE'] !== null ? autolinker.link(feature.properties['PROVINCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE_C'] !== null ? autolinker.link(feature.properties['PROVINCE_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT'] !== null ? autolinker.link(feature.properties['DISTRICT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT_C'] !== null ? autolinker.link(feature.properties['DISTRICT_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL'] !== null ? autolinker.link(feature.properties['TEHSIL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL_C'] !== null ? autolinker.link(feature.properties['TEHSIL_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Remarks'] !== null ? autolinker.link(feature.properties['Remarks'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['T_NAME'] !== null ? autolinker.link(feature.properties['T_NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NO.'] !== null ? autolinker.link(feature.properties['NO.'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Colour'] !== null ? autolinker.link(feature.properties['Colour'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Density'] !== null ? autolinker.link(feature.properties['Density'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TehsilSheikhupura_2_0() {
+            return {
+                pane: 'pane_TehsilSheikhupura_2',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,209,128,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_TehsilSheikhupura_2');
+        map.getPane('pane_TehsilSheikhupura_2').style.zIndex = 402;
+        map.getPane('pane_TehsilSheikhupura_2').style['mix-blend-mode'] = 'normal';
+        var layer_TehsilSheikhupura_2 = new L.geoJson(json_TehsilSheikhupura_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_TehsilSheikhupura_2',
+            layerName: 'layer_TehsilSheikhupura_2',
+            pane: 'pane_TehsilSheikhupura_2',
+            onEachFeature: pop_TehsilSheikhupura_2,
+            style: style_TehsilSheikhupura_2_0,
+        });
+        bounds_group.addLayer(layer_TehsilSheikhupura_2);
+        map.addLayer(layer_TehsilSheikhupura_2);
+        function pop_TehsilNankanasahbMandiFaizabad_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE'] !== null ? autolinker.link(feature.properties['PROVINCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE_C'] !== null ? autolinker.link(feature.properties['PROVINCE_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT'] !== null ? autolinker.link(feature.properties['DISTRICT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT_C'] !== null ? autolinker.link(feature.properties['DISTRICT_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL'] !== null ? autolinker.link(feature.properties['TEHSIL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL_C'] !== null ? autolinker.link(feature.properties['TEHSIL_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Remarks'] !== null ? autolinker.link(feature.properties['Remarks'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['T_NAME'] !== null ? autolinker.link(feature.properties['T_NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['colour'] !== null ? autolinker.link(feature.properties['colour'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['No'] !== null ? autolinker.link(feature.properties['No'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Density'] !== null ? autolinker.link(feature.properties['Density'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TehsilNankanasahbMandiFaizabad_3_0() {
+            return {
+                pane: 'pane_TehsilNankanasahbMandiFaizabad_3',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,209,128,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_TehsilNankanasahbMandiFaizabad_3');
+        map.getPane('pane_TehsilNankanasahbMandiFaizabad_3').style.zIndex = 403;
+        map.getPane('pane_TehsilNankanasahbMandiFaizabad_3').style['mix-blend-mode'] = 'normal';
+        var layer_TehsilNankanasahbMandiFaizabad_3 = new L.geoJson(json_TehsilNankanasahbMandiFaizabad_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_TehsilNankanasahbMandiFaizabad_3',
+            layerName: 'layer_TehsilNankanasahbMandiFaizabad_3',
+            pane: 'pane_TehsilNankanasahbMandiFaizabad_3',
+            onEachFeature: pop_TehsilNankanasahbMandiFaizabad_3,
+            style: style_TehsilNankanasahbMandiFaizabad_3_0,
+        });
+        bounds_group.addLayer(layer_TehsilNankanasahbMandiFaizabad_3);
+        map.addLayer(layer_TehsilNankanasahbMandiFaizabad_3);
+        function pop_tehsilmuridkeqmd_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE'] !== null ? autolinker.link(feature.properties['PROVINCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE_C'] !== null ? autolinker.link(feature.properties['PROVINCE_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT'] !== null ? autolinker.link(feature.properties['DISTRICT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT_C'] !== null ? autolinker.link(feature.properties['DISTRICT_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL'] !== null ? autolinker.link(feature.properties['TEHSIL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL_C'] !== null ? autolinker.link(feature.properties['TEHSIL_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Remarks'] !== null ? autolinker.link(feature.properties['Remarks'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['T_NAME'] !== null ? autolinker.link(feature.properties['T_NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['No'] !== null ? autolinker.link(feature.properties['No'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Colour'] !== null ? autolinker.link(feature.properties['Colour'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Density'] !== null ? autolinker.link(feature.properties['Density'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_tehsilmuridkeqmd_4_0() {
+            return {
+                pane: 'pane_tehsilmuridkeqmd_4',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,209,128,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_tehsilmuridkeqmd_4');
+        map.getPane('pane_tehsilmuridkeqmd_4').style.zIndex = 404;
+        map.getPane('pane_tehsilmuridkeqmd_4').style['mix-blend-mode'] = 'normal';
+        var layer_tehsilmuridkeqmd_4 = new L.geoJson(json_tehsilmuridkeqmd_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_tehsilmuridkeqmd_4',
+            layerName: 'layer_tehsilmuridkeqmd_4',
+            pane: 'pane_tehsilmuridkeqmd_4',
+            onEachFeature: pop_tehsilmuridkeqmd_4,
+            style: style_tehsilmuridkeqmd_4_0,
+        });
+        bounds_group.addLayer(layer_tehsilmuridkeqmd_4);
+        map.addLayer(layer_tehsilmuridkeqmd_4);
+        function pop_Tehsildepalpur_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE'] !== null ? autolinker.link(feature.properties['PROVINCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PROVINCE_C'] !== null ? autolinker.link(feature.properties['PROVINCE_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT'] !== null ? autolinker.link(feature.properties['DISTRICT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT_C'] !== null ? autolinker.link(feature.properties['DISTRICT_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL'] !== null ? autolinker.link(feature.properties['TEHSIL'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TEHSIL_C'] !== null ? autolinker.link(feature.properties['TEHSIL_C'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Remarks'] !== null ? autolinker.link(feature.properties['Remarks'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['T_NAME'] !== null ? autolinker.link(feature.properties['T_NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Leng'] !== null ? autolinker.link(feature.properties['Shape_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Shape_Area'] !== null ? autolinker.link(feature.properties['Shape_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? autolinker.link(feature.properties['Type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['No'] !== null ? autolinker.link(feature.properties['No'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Density'] !== null ? autolinker.link(feature.properties['Density'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Colour'] !== null ? autolinker.link(feature.properties['Colour'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Tehsildepalpur_5_0() {
+            return {
+                pane: 'pane_Tehsildepalpur_5',
+                stroke: false, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,209,128,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Tehsildepalpur_5');
+        map.getPane('pane_Tehsildepalpur_5').style.zIndex = 405;
+        map.getPane('pane_Tehsildepalpur_5').style['mix-blend-mode'] = 'normal';
+        var layer_Tehsildepalpur_5 = new L.geoJson(json_Tehsildepalpur_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Tehsildepalpur_5',
+            layerName: 'layer_Tehsildepalpur_5',
+            pane: 'pane_Tehsildepalpur_5',
+            onEachFeature: pop_Tehsildepalpur_5,
+            style: style_Tehsildepalpur_5_0,
+        });
+        bounds_group.addLayer(layer_Tehsildepalpur_5);
+        map.addLayer(layer_Tehsildepalpur_5);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Tehsildepalpur_5.png" /> Tehsil depalpur': layer_Tehsildepalpur_5,'<img src="legend/tehsilmuridkeqmd_4.png" /> tehsil muridke.qmd': layer_tehsilmuridkeqmd_4,'<img src="legend/TehsilNankanasahbMandiFaizabad_3.png" /> Tehsil Nankana sahb( Mandi Faizabad)': layer_TehsilNankanasahbMandiFaizabad_3,'<img src="legend/TehsilSheikhupura_2.png" /> Tehsil Sheikhupura': layer_TehsilSheikhupura_2,'<img src="legend/TehilSahiwal_1.png" /> Tehil Sahiwal': layer_TehilSahiwal_1,"Google Maps": layer_GoogleMaps_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
